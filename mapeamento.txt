@@ -4,7 +4,9 @@ Padrão de Projeto Observer
 
 Subject: Classe que terá alterações durante as operações. No nosso caso, a classe "ContaCorrente".
 
-Observer: Classe que receberá as "notificações" de alteração do Subject. No nosso caso, as classes:
+Observer: Classe Interface que receberá as "notificações" de alteração do Subject. No nosso caso, a classe "Servico".
+
+ConcreteObserver: No nosso caso, as classes:
 >> ServicoAnaliseFluxoCaixa
 >> ServicoAnaliseInvestimento
 >> ServicoBaixaAutomaticaInvestimento
