@@ -15,6 +15,9 @@ public abstract class Cliente {
     private String nome;
     private String telCelular;
     private String telFixo;
+    private boolean notificaWhatsApp;
+    private boolean notificaSMS;
+    private boolean notificaJMS;
     private HashMap<String,ContaCorrente> contas;
 
     public Cliente(String nome, String telCelular, String telFixo) {
@@ -22,6 +25,9 @@ public abstract class Cliente {
         this.setTelCelular(telCelular);
         this.setTelFixo(telFixo);
         this.contas = new HashMap();
+        this.notificaWhatsApp = false;
+        this.notificaSMS = false;
+        this.notificaJMS = false;
     }
 
     public void addConta(ContaCorrente cc){
@@ -58,6 +64,33 @@ public abstract class Cliente {
     public void setTelFixo(String telFixo) {
         this.telFixo = telFixo;
     }
+
+    public boolean isNoificaWhatsApp() {
+        return notificaWhatsApp;
+    }
+
+    public void setNoificaWhatsApp(boolean noificaWhatsApp) {
+        this.notificaWhatsApp = noificaWhatsApp;
+    }
+
+    public boolean isNoificaSMS() {
+        return notificaSMS;
+    }
+
+    public void setNoificaSMS(boolean noificaWhatsSMS) {
+        this.notificaSMS = noificaWhatsSMS;
+    }
+
+    public boolean isNoificaJMS() {
+        return notificaJMS;
+    }
+
+    public void setNoificaJMS(boolean noificaWhatsJMS) {
+        this.notificaJMS = noificaWhatsJMS;
+    }
+
+    
+    
     
     
     

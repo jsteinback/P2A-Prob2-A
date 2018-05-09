@@ -1,6 +1,7 @@
 package problema2;
 
 
+import problema2.servicos.Servico;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -19,6 +20,23 @@ public class ContaCorrente {
     private Cliente cliente;
     private double saldo = 0;
     private List<Operacao> operacoes = new ArrayList();
+    private ArrayList<Servico> servicos = new ArrayList<>();
+    
+    
+    
+    public void attach(Servico servico){
+        servicos.add(servico);
+    }
+    
+    public void detach(Servico servico){
+        servicos.remove(servico);
+    }
+    
+    public void notify(Operacao operacao){
+        for (Servico servico : servicos) {
+            servico.update(operacao);
+        }
+    }
 
     public ContaCorrente(int numero, int agencia) {
         this.setNumero(numero);
@@ -36,12 +54,14 @@ public class ContaCorrente {
         Operacao oper = new Operacao(valor,this.getSaldo(),TipoOperacao.SAIDA,new Date(),this);
         operacoes.add(oper);
         this.saldo -= valor;
+        notify(oper);
     }
     
     public void depositar(double valor){
         Operacao oper = new Operacao(valor,this.getSaldo(),TipoOperacao.ENTRADA,new Date(),this);
         operacoes.add(oper);
         this.saldo += valor;
+        notify(oper);
     }    
     
     public void transferir(double valor, ContaCorrente destino){
@@ -52,12 +72,14 @@ public class ContaCorrente {
         Operacao oper = new OperacaoTransferencia(valor,this.getSaldo(),TipoOperacao.SAIDA,new Date(),this,destino);
         operacoes.add(oper);
         this.saldo -= valor;
+        notify(oper);
     }   
     
     private void receberTransferencia(double valor, ContaCorrente origem){    
         Operacao oper = new OperacaoTransferencia(valor,this.getSaldo(),TipoOperacao.ENTRADA,new Date(),this,origem);
         operacoes.add(oper);
-        this.saldo += valor;        
+        this.saldo += valor;   
+        notify(oper);     
     }
     
     public int getNumero() {
