@@ -12,3 +12,5 @@ ConcreteObserver: No nosso caso, as classes:
 >> ServicoBaixaAutomaticaInvestimento
 >> ServicoOfertaFinanciamento
 >> OperacaoTransferencia
+
+--> Prof. Marcel: a implementação do método update na classe abstrata Servico faz com que apenas os serviços de notificação sejam executados e não todos os serviços.
